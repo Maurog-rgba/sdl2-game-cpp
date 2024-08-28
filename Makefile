@@ -1,7 +1,7 @@
 # Definindo variáveis para facilitar a manutenção
 CXX = g++
-CXXFLAGS = -I src/include -L src/lib -Dmain=SDL_main
-LIBS = -lmingw32 -lSDL2main -lSDL2
+CXXFLAGS = -I src/include -L src/lib -Dmain=SDL_main  
+LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 SRCS = main.cpp Game.cpp
 OBJS = build/main.o build/Game.o
 TARGET = build/main
