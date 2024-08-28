@@ -1,35 +1,21 @@
-#include <iostream>
-#include <SDL2/SDL.h>
+#include "Game.hpp"
 
-const int WIDTH = 800, HEIGHT = 600;
+Game *game = nullptr;
 
-int main(int argc, char *argv[])
+int main(int argv, char **args)
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
+    game = new Game();
 
-    SDL_Window *window = SDL_CreateWindow("Hello SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+    game->init("Game Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-    if (window == NULL)
+    while (game->running())
     {
-        std::cout << "Failed to create window\n";
-        return 1;
+        game->handleEvents();
+        game->update();
+        game->render();
     }
 
-    SDL_Event windowEvent;
+    game->clean();
 
-    while (true)
-    {
-        if (SDL_PollEvent(&windowEvent))
-        {
-            if (windowEvent.type == SDL_QUIT)
-            {
-                break;
-            }
-        }
-    }
-
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
-    return EXIT_SUCCESS;
+    return 0;
 }
