@@ -1,9 +1,9 @@
 # Definindo variáveis para facilitar a manutenção
 CXX = g++
-CXXFLAGS = -I C:/clibs/SDL2/include -I C:/clibs/SDL2_image/include -Dmain=SDL_main
-LIBS = -L C:/clibs/SDL2/lib -L C:/clibs/SDL2_image/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
-SRCS = src/main.cpp src/Game.cpp src/GameObject.cpp src/TextureManager.cpp src/Map.cpp src/Vector2D.cpp
-OBJS = build/main.o build/Game.o build/GameObject.o build/TextureManager.o build/Map.o build/Vector2D.o
+CXXFLAGS = -I C:/clibs/SDL2/include -Dmain=SDL_main
+LIBS = -L C:/clibs/SDL2/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+SRCS = src/main.cpp src/Game.cpp src/GameObject.cpp src/TextureManager.cpp src/Map.cpp src/Vector2D.cpp src/Collision.cpp
+OBJS = build/main.o build/Game.o build/GameObject.o build/TextureManager.o build/Map.o build/Vector2D.o build/Collision.o
 TARGET = build/main
 
 # Criar o diretório de build se não existir
@@ -36,6 +36,10 @@ build/Map.o: src/Map.cpp src/Map.hpp | build
 # Regra para compilar Vector2D.cpp e colocar o objeto na pasta build
 build/Vector2D.o: src/Vector2D.cpp src/Vector2D.hpp | build
 	$(CXX) $(CXXFLAGS) -c src/Vector2D.cpp -o build/Vector2D.o
+
+# Regra para compilar Collision.cpp e colocar o objeto na pasta build
+build/Collision.o: src/Collision.cpp src/Collision.hpp | build
+	$(CXX) $(CXXFLAGS) -c src/Collision.cpp -o build/Collision.o
 
 # Regra para criar a pasta build
 build:
